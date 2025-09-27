@@ -24,25 +24,22 @@ services:
         sync: false
       - key: LINKEDIN_PASSWORD
         sync: false
-      # Security and permissions for n8n Code node
-      - key: N8N_BLOCK_ENV_ACCESS_IN_NODE
-        value: "false"           # Allow env vars for Code, as required by LinkedIn login
-      - key: N8N_BLOCK_FILE_ACCESS_TO_N8N_FILES
-        value: "true"
-      - key: N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS
-        value: "true"            # Enhances security for config/settings file
-      - key: N8N_SAMESITE_COOKIE
-        value: lax
+    # Security and session options for n8n
       - key: N8N_SECURE_COOKIE
-        value: "true"
-          # For SQLite connection pool (must be > 0 for future n8n compatibility)
-      - key: DB_SQLITE_POOL_SIZE
-        value: "2"            # Or any value > 0
+        value: "true"                    # Ensure cookies are sent only over HTTPS
+      - key: N8N_SAMESITE_COOKIE
+        value: lax                       # Cookies sent with top-level navigation (default: lax)
+      - key: N8N_BLOCK_FILE_ACCESS_TO_N8N_FILES
+        value: "true"                    # Block access to .n8n/config files for security
+      - key: N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS
+        value: "true"                    # Restrict config/settings file permissions
 
-    # For enabling task runners (will soon be required in all n8n)
-      - key: N8N_RUNNERS_ENABLED
-        value: "true"
-
-    # For Code node/env access inside n8n (needed for your LinkedIn env usage!)
+# Access controls for Node/code execution
       - key: N8N_BLOCK_ENV_ACCESS_IN_NODE
-        value: "false"
+        value: "false"                   # Allow env variables in Code node (needed for LinkedIn)
+
+# Internal database and future n8n runtime requirements
+      - key: DB_SQLITE_POOL_SIZE
+        value: "2"                       # Use a pool for SQLite connections (any value > 0)
+      - key: N8N_RUNNERS_ENABLED
+        value: "true"                    # Enable n8n task runners (future default)
