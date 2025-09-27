@@ -1,5 +1,6 @@
 # Use a specific n8n version for stability
-FROM n8nio/n8n:1.112.5
+FROM docker.n8n.io/n8nio/n8n:1.112.5
+# Switch to root to install dependencies
 
 USER root
 
