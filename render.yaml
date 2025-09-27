@@ -17,8 +17,8 @@ services:
       # n8n credential (login for owner account)
       - key: N8N_USER_EMAIL
         value: dushyant5er@gmail.com
-      - key: 
-        value: Kashi@1608
+      - key: N8N_USER_PASSWORD
+        value: Kashi@1608  # Use Render secrets for sensitive info
       # LinkedIn automation credentials
       - key: LINKEDIN_EMAIL
         sync: false

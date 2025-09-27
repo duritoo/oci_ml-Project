@@ -1,8 +1,9 @@
-FROM n8nio/n8n:latest
+# Use a specific n8n version for stability
+FROM n8nio/n8n:1.112.5
 
 USER root
 
-# Install Chromium + dependencies (Alpine package names differ from Debian/Ubuntu)
+# Install Chromium and essential dependencies (Alpine)
 RUN apk add --no-cache \
     chromium \
     nss \
@@ -13,7 +14,7 @@ RUN apk add --no-cache \
     udev \
     dumb-init
 
-# Puppeteer expects this path
+# Puppeteer expects a specific executable path
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
 
 USER node
