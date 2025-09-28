@@ -18,7 +18,7 @@ services:
       - key: N8N_USER_EMAIL
         value: dushyant5er@gmail.com
       - key: N8N_USER_PASSWORD
-        value: Kashi@1608  # Use Render secrets for sensitive info
+        value: false  # Use Render secrets for sensitive info
       # LinkedIn automation credentials
       - key: LINKEDIN_EMAIL
         sync: false
@@ -40,6 +40,6 @@ services:
 
 # Internal database and future n8n runtime requirements
       - key: DB_SQLITE_POOL_SIZE
-        value: "2"                       # Use a pool for SQLite connections (any value > 0)
+        value: "8"                       # Use a pool for SQLite connections (any value > 0)
       - key: N8N_RUNNERS_ENABLED
         value: "true"                    # Enable n8n task runners (future default)
